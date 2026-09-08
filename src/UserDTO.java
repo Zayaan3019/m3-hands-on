@@ -13,13 +13,10 @@ public record UserDTO(String id, String email, String name, boolean active) {
             user.isActive()
         );
     }
-}
 
-public static UserDTO fromUser(User u) {
-    return new UserDTO(
-        String.valueOf(u.getId()),
-        u.getEmail(),
-        u.getName(),
-        u.isActive()
-    );
+    public static void main(String[] args) {
+        User user = new User(1L, "Ada Lovelace", "ada@example.com", true);
+        UserDTO dto = UserDTO.fromUser(user);
+        System.out.println(dto);
+    }
 }
