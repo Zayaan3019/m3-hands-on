@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * A plain-Java controller.
+ * A plain-Java controller. 
  *
  * Only {@link #listOrders()} is hand-written and will pass its test
  * on day one. {@link #getOrderById(long)} and
@@ -31,27 +31,17 @@ public class OrderController {
     /** GET /orders/{id} -- return the matching order, or null if
      *  none exists. TODO: complete with Copilot. */
     public Order getOrderById(long id) {
-        // TODO: look up id in `store` and return it (or null).
-        throw new UnsupportedOperationException("TODO: complete via AI");
-        @GetMapping("/orders/{id}")
-        public Order getOrderById(@PathVariable long id) {
-            return store.get(id);
-        }
+        return store.get(id);
     }
 
     /** POST /orders -- create a new order, assign it the next id,
      *  store it, and return it. TODO: complete with Copilot. */
     public Order createOrder(String item, int qty) {
-        // TODO: validate item/qty, allocate nextId, put in store, return.
-        throw new UnsupportedOperationException("TODO: complete via AI");
-        @PostMapping("/orders")
-        public Order createOrder(@RequestParam String item, @RequestParam int qty) {
-            if (item == null || item.isEmpty() || qty <= 0) {
-                throw new IllegalArgumentException("Invalid item or quantity");
-            }
-            Order order = new Order(nextId++, item, qty);
-            store.put(order.id(), order);
-            return order;
+        if (item == null || item.isEmpty() || qty <= 0) {
+            throw new IllegalArgumentException("Invalid item or quantity");
         }
+        Order order = new Order(nextId++, item, qty);
+        store.put(order.id(), order);
+        return order;
     }
 }
